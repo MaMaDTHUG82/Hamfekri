@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه ورود | همفکری</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Vazir';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        * {
+            font-family: 'Vazir', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #FFF0B8 0%, #1a5276 100%);
+            min-height: 100vh;
+        }
+        
+        .login-container {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .login-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .login-left {
+            background: linear-gradient(135deg, #3498db 0%, #1a5276 100%);
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #f7f9fc;
+        }
+        
+        .input-group input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .input-group label {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: #7f8c8d;
+        }
+        
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: 0;
+            right: 10px;
+            transform: translateY(-50%);
+            background-color: white;
+            padding: 0 5px;
+            font-size: 0.75rem;
+            color: #3498db;
+        }
+        
+        .btn-login {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: center;
+            text-align: center;
+        }
+        
+        .btn-login:hover {
+            background: linear-gradient(135deg, #FFF0B8 0%, #1a5276 100%);
+            transform: translateY(-2px);
+        }
+        
+        .forgot-password, .register-link {
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .forgot-password:hover, .register-link:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            background-color: #FFF0B8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .brand-logo .fa-brain {
+            font-size: 2.5rem;
+            color: #3498db;
+        }
+        
+        @media (max-width: 768px) {
+            .login-left {
+                display: none;
+            }
+        }
+
+
+        .Logopnu {
+            width: 300px;
+            height: 200px;
+            background-image: url('/frontend/images/Logopnu.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+
+
+<body class="flex items-center justify-center p-4">
+
+    <div class="login-container bg-white flex w-full max-w-4xl">
+        <!-- Left Side - Image/Branding -->
+        <div class="login-left hidden md:flex md:w-1/2 text-white p-10 flex-col justify-center items-center">
+            <div class="text-center">
+                <div class="brand-logo mx-auto">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">همفکری</h2>
+                <p class="mb-8">به سامانه همفکری پیام نور خوش آمدید. لطفا وارد حساب کاربری خود شوید.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span>دسترسی آسان به محتوای مورد نظر</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span>مدیریت اطلاعات شخصی</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span>ارتباط مستقیم با کارشناسان</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+
+        <!-- Right Side - Login Form -->
+        <div class="login-right w-full md:w-1/2 p-10">
+            <div class="md:hidden flex justify-center mb-8">
+                <div class="brand-logo">
+                    <i class="fas fa-brain"></i>
+                </div>
+            </div>
+            
+
+
+
+
+
+
+            <h1 class="text-2xl font-bold mb-6 text-center">ورود به سامانه</h1>
+            
+            <form>
+                <div class="input-group">
+                    <input type="text" id="username" placeholder=" " class="text-right">
+                    <label for="username">نام کاربری</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" placeholder=" " class="text-right">
+                    <label for="password">رمز عبور</label>
+                </div>
+                
+                <div class="flex justify-between items-center mb-6">
+                    <a href="#" class="forgot-password text-sm">رمز عبور را فراموش کرده‌ام</a>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" class="ml-2">
+                        <label for="remember" class="text-sm">مرا به خاطر بسپار</label>
+                    </div>
+                </div>
+                
+
+                
+                <a href="comments.html" class="btn-login mb-4" type="submit" >
+                    ورود به سامانه
+                </a>
+
+                <div class="text-center">
+                    <p class="text-sm">
+                        حساب کاربری ندارید؟ 
+                        <a href="#" class="register-link font-bold">ثبت‌نام</a>
+                    </p>
+                </div>
+            </form>
+            
+            <div class="mt-10 pt-6 border-t border-gray-200 text-center">
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="text-xs block mt-1">راهنما</span>
+                    </a>
+
+                    <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="text-xs block mt-1">حریم خصوصی</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

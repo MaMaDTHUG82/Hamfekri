@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سامانه همفکری دانشگاه پیام نور تهران شمال</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Vazir';
+            src: url('Vazir.tff') format('tff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Vazir';
+            background-color: #FFF0B8;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .header-logo {
+            height: 60px;
+            background-color: #0A2463;
+            background-image: linear-gradient(to bottom, #0A2463, #FFF0B8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .header-nav {
+            background-color: #0A2463;
+            border-bottom: 1px solid #ddd;
+            color: white ;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-right: 10px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .comment-box {
+            border: 5px solid #0A2463;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .footer {
+            background-color: #0A2463;
+            color: white;
+            background-image: linear-gradient(to bottom, #04102e, #07339b);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-btn {
+            padding: 5px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            background-color: #e0eaf7;
+            font-weight: bold;
+            border-bottom: 3px solid #071d56;
+        }
+        
+        button:focus {
+            outline: none;
+        }
+        
+        .like-btn, .dislike-btn, .reply-btn {
+            cursor: pointer;
+            padding: 5px 8px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 10px;
+            background-color: #f0f4f8;
+        }
+        
+        .btn-primary {
+            background-color: #071d56;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0a2d7e;
+        }
+        
+        .content-container {
+            min-height: calc(100vh - 180px);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- هدر -->
+    <header>
+        <div class="header-logo">
+            <div class="container mx-auto px-4 flex items-center">
+                <div class="mr-auto">
+                    <button id="loginBtn" class="text-white">
+                        <i class="fas fa-user ml-1"></i> نمایه شما
+                    </button>
+                </div>
+                <div class="mx-auto flex items-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Payame_Noor_University_Logo.svg" 
+                         alt="سامانه همفکری دانشگاه پیام نور تهران" class="h-12">
+                    <div class="logo-text">سامانه همفکری دانشگاه پیام نور تهران</div>
+                </div>
+                <div class="ml-auto">&nbsp;</div>
+            </div>
+        </div>
+        <nav class="header-nav py-2">
+            <div class="container mx-auto px-4 flex justify-center space-x-4 space-x-reverse">
+                <button onclick="showPage('home')" class="hover:text-blue-800">صفحه نخست</button>
+                <button onclick="showPage('about')" class="hover:text-blue-800">درباره ما</button>
+                <button onclick="showPage('contact')" class="hover:text-blue-800">تماس با ما</button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- محتوای اصلی -->
+    <main class="flex-grow content-container">
+        <!-- صفحه اصلی -->
+        <div id="homePage" class="page active">
+            <div class="container mx-auto px-4 py-6">
+                <div class="mb-8 bg-white rounded-lg p-4 shadow">
+                    <div class="flex items-center text-sm text-gray-600 mb-2">
+                        <a href="#" onclick="showPage('home')" class="hover:text-blue-700">صفحه نخست</a>
+                        <span class="mx-2">»</span>
+                        <span>نظرات</span>
+                    </div>
+                    <h1 class="text-xl font-bold mb-4"> </h1>
+                    <p class="text-gray-700">نظرات،بخش روان‌سازی چشم‌انداز مطلوب</p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow">
+                    <div class="mb-6 border-b pb-4">
+                        <div class="flex items-center">
+                            <div class="tab-btn active" onclick="showTab('comments')">
+                                <span class="ml-1 bg-blue-600 text-white rounded-full px-2 py-0.5 text-xs">1</span>
+                                نظرات
+                            </div>
+                            <div class="tab-btn" onclick="showTab('versions')">
+                                <span class="ml-1 bg-gray-500 text-white rounded-full px-2 py-0.5 text-xs">7</span>
+                                بازنویسی‌ها
+                            </div>
+                            <div class="tab-btn" onclick="showTab('mainText')">متن اصلی</div>
+                        </div>
+                    </div>
+                    
+                    <!-- تب نظرات -->
+                    <div id="commentsTab" class="tab-content active">
+                        <div class="mb-6">
+                            <button id="addCommentBtn" class="btn-primary flex items-center">
+                                <i class="fas fa-plus ml-2"></i>
+                                نظر جدید
+                            </button>
+                        </div>
+                        
+                        <div id="commentForm" class="mb-8 hidden">
+                            <textarea id="newCommentText" class="w-full border border-gray-300 rounded p-3 mb-3" rows="4" placeholder="نظر خود را بنویسید..."></textarea>
+                            <div class="flex justify-end">
+                                <button id="submitCommentBtn" class="btn-primary">ثبت نظر</button>
+                                <button id="cancelCommentBtn" class="mr-3 px-4 py-2 bg-gray-300 rounded">انصراف</button>
+                            </div>
+                        </div>
+                        
+                        <div id="commentsContainer">
+                            <div class="comment-box">
+                                <div class="comment-header">
+                                    <div class="flex items-center">
+                                        <img src="https://www.arshani.ir/uploads/images/2023/12/image_750x_656dbb925e349.jpg" alt="تصویر کاربر" class="rounded-full w-10 h-10 ml-2">
+                                        <div>
+                                            <div class="font-bold"> محمدحسین جاهد</div>
+                                            <div class="text-sm text-gray-500">1404/02/14 18:59</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment-body">
+                                    <p>با توجه به بیانات مقام معظم رهبری در خصوص استفاده از پیشرفت علمی درجهت گسترش زبان فارسی، مطلوب است در این بخش، به غیر از مرجعیت علمی کشور به مرجعیت علمی زبان فارسی نیز اشاره شود.</p>
+                                </div>
+                                <div class="comment-footer mt-4 flex">
+                                    <button class="like-btn">
+                                        <i class="far fa-thumbs-up ml-1"></i>
+                                        <span>5</span>
+                                    </button>
+                                    <button class="dislike-btn">
+                                        <i class="far fa-thumbs-down ml-1"></i>
+                                        <span>1</span>
+                                    </button>
+                                    <button class="reply-btn">
+                                        <i class="far fa-comment ml-1"></i>
+                                        پاسخ به این نظر
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- تب بازنویسی‌ها -->
+                    <div id="versionsTab" class="tab-content">
+                        <div class="py-4">
+                            <h3 class="text-lg font-bold mb-4">نسخه‌های بازنویسی شده</h3>
+                            <p class="text-gray-600">در این بخش، نسخه‌های مختلف بازنویسی شده سند قابل مشاهده است.</p>
+                            <div class="mt-4">
+                                <div class="border border-gray-300 rounded p-3 mb-3">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="font-bold">نسخه 7 - آخرین بازنویسی</span>
+                                        <span class="text-sm text-gray-500">1404/01/20</span>
+                                    </div>
+                                    <p class="text-gray-700">نسخه نهایی بازنویسی شده با اعمال نظرات کاربران</p>
+                                    <button class="mt-2 text-blue-600 hover:underline">مشاهده</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- تب متن اصلی -->
+                    <div id="mainTextTab" class="tab-content">
+                        <div class="py-4">
+                            <h3 class="text-lg font-bold mb-4">متن اصلی سند</h3>
+                            <div class="border border-gray-300 rounded p-4">
+                                <p class="mb-3">بخش 3: توسعه علمی و فناوری زبان فارسی</p>
+                                <p class="mb-3">یکی از محورهای اصلی توسعه علمی کشور، گسترش زبان فارسی به عنوان زبان علم و دانش است. در این راستا، اقدامات زیر پیشنهاد می‌شود:</p>
+                                <ul class="list-disc pr-6 mb-3">
+                                    <li class="mb-2">توسعه پایگاه‌های داده علمی به زبان فارسی</li>
+                                    <li class="mb-2">حمایت از تولید محتوای علمی به زبان فارسی</li>
+                                    <li class="mb-2">استانداردسازی اصطلاحات علمی و فنی</li>
+                                    <li class="mb-2">گسترش آموزش علوم به زبان فارسی در سطوح بین‌المللی</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحه درباره ما -->
+        <div id="aboutPage" class="page">
+            <div class="container mx-auto px-4 py-6">
+                <div class="mb-8 bg-white rounded-lg p-4 shadow">
+                    <div class="flex items-center text-sm text-gray-600 mb-2">
+                        <a href="#" onclick="showPage('home')" class="hover:text-blue-700">صفحه نخست</a>
+                        <span class="mx-2">»</span>
+                        <span>درباره سامانه</span>
+                    </div>
+                    <h1 class="text-xl font-bold">درباره سامانه</h1>
+                    <div class="text-sm text-gray-500">امروز: یکشنبه 16 اردیبهشت 1404</div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow">
+                    <h2 class="text-2xl font-bold text-center mb-6">درباره سامانه</h2>
+                    
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-2/3 mb-6 md:mb-0">
+                            <h3 class="text-xl font-bold mb-4">«اسناد ملی»</h3>
+                            <p class="mb-4">مبنای تنظیم مناسبات ذینفعان و تعیین جهت و مسیر کشور</p>
+                            <p class="mb-4">اسناد ملی مبنای تقسیم کار ملی و تنظیم مناسبات ذینفعان است. یکی از ارکان اجرایی شدن اسناد ملی پذیرش و مقبولیت این اسناد در میان همه ذینفعان و خبرگان حوزه تخصصی است. بدون مشارکت و مساهمت صاحبنظران موضوعات تخصصی در تدوین اسناد ملی، امکان تحقق اهداف اسناد میسر نیست.</p>
+                            <p class="mb-4">سامانه هم‌اندیشی شورای عالی انقلاب فرهنگی با هدف ایجاد فضایی برای مشارکت نخبگان، صاحب‌نظران و متخصصان در بازنگری و به‌روزرسانی اسناد ملی طراحی شده است.</p>
+                        </div>
+                        <div class="md:w-1/3 md:pr-6">
+                            <img src="https://via.placeholder.com/400x300" alt="تصویر درباره سامانه" class="w-full rounded-lg shadow">
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-lg font-bold mb-4">اهداف سامانه</h3>
+                        <ul class="list-disc pr-6">
+                            <li class="mb-2">ایجاد بستر مشارکت حداکثری متخصصان و صاحب‌نظران</li>
+                            <li class="mb-2">شفاف‌سازی فرایند تدوین اسناد ملی</li>
+                            <li class="mb-2">تسهیل در دریافت نظرات و دیدگاه‌های تخصصی</li>
+                            <li class="mb-2">ارتقای کیفیت اسناد ملی با بهره‌گیری از خرد جمعی</li>
+                            <li class="mb-2">افزایش مقبولیت اجتماعی اسناد ملی</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- صفحه تماس با ما -->
+        <div id="contactPage" class="page">
+            <div class="container mx-auto px-4 py-6">
+                <div class="mb-8 bg-white rounded-lg p-4 shadow">
+                    <div class="flex items-center text-sm text-gray-600 mb-2">
+                        <a href="#" onclick="showPage('home')" class="hover:text-blue-700">صفحه نخست</a>
+                        <span class="mx-2">»</span>
+                        <span>تماس با ما</span>
+                    </div>
+                    <h1 class="text-xl font-bold">تماس با ما</h1>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 mb-6 md:mb-0">
+                            <h3 class="text-xl font-bold mb-4">اطلاعات تماس</h3>
+                            <div class="mb-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-map-marker-alt mt-1 ml-3 text-blue-800"></i>
+                                    <div>
+                                        <p class="font-bold">آدرس:</p>
+                                        <p>تهران، خیابان انقلاب اسلامی، خیابان فلسطین شمالی، شماره 309</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-phone mt-1 ml-3 text-blue-800"></i>
+                                    <div>
+                                        <p class="font-bold">تلفن:</p>
+                                        <p>021-0000000</p>
+                                        <p>021-0000000</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-envelope mt-1 ml-3 text-blue-800"></i>
+                                    <div>
+                                        <p class="font-bold">پست الکترونیکی:</p>
+                                        <p>info@pnu.ir</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-globe mt-1 ml-3 text-blue-800"></i>
+                                    <div>
+                                        <p class="font-bold">وب‌سایت:</p>
+                                        <p>www.puu.ac.ir</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 md:pr-6">
+                            <h3 class="text-xl font-bold mb-4">فرم تماس</h3>
+                            <form>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2">نام و نام خانوادگی</label>
+                                    <input type="text" class="w-full border border-gray-300 rounded p-2">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2">پست الکترونیکی</label>
+                                    <input type="email" class="w-full border border-gray-300 rounded p-2">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2">موضوع</label>
+                                    <input type="text" class="w-full border border-gray-300 rounded p-2">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2">متن پیام</label>
+                                    <textarea class="w-full border border-gray-300 rounded p-2" rows="5"></textarea>
+                                </div>
+                                <button type="button" class="btn-primary">ارسال پیام</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- فوتر -->
+    <footer class="footer mt-8 py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-bold text-lg mb-4">اطلاعات تماس</h3>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-map-marker-alt ml-2"></i>
+                        تهران، بزرگراه شهید زین الدین، بابائیان، 15 متری شیرازی، پلاک 5، دانشکده هنر و معماری
+                    </p>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-phone ml-2"></i>
+                        <span dir="ltr">021-00000000</span>
+                    </p>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-fax ml-2"></i>
+                        <span dir="ltr">021-00000000</span>
+                    </p>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-envelope ml-2"></i>
+                        info@pnu.ir
+                    </p>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-globe ml-2"></i>
+                        www.pnu.ac.ir
+                    </p>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <h3 class="font-bold text-lg mb-4">دسترسی سریع</h3>
+                    <ul>
+                        <li class="mb-2">
+                            <a href="#" class="hover:text-blue-300">صفحه اصلی</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="hover:text-blue-300">اسناد ملی</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="hover:text-blue-300">درباره ما</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="hover:text-blue-300">راهنما</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">لینک های مرتبط</h3>
+                    <ul>
+                        <li class="mb-2">
+                            <a href="https://www.leader.ir" target="_blank" class="hover:text-blue-300">پایگاه اطلاع رسانی دفتر رهبر معظم انقلاب</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://president.ir" target="_blank" class="hover:text-blue-300">پایگاه اطلاع رسانی ریاست جمهوری</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://www.parliran.ir" target="_blank" class="hover:text-blue-300">پایگاه اطلاع رسانی مجلس شورای اسلامی</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="https://sccr.ir" target="_blank" class="hover:text-blue-300">پایگاه اطلاع رسانی شورای عالی انقلاب فرهنگی</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center border-t border-blue-800 pt-4">
+                <p>&copy; سامانه همفکری دانشگاه پیام نور تهران شمال 1404</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // نمایش صفحات مختلف
+        function showPage(pageName) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageName + 'Page').classList.add('active');
+        }
+        
+        // تب‌های داخل صفحه
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`).classList.add('active');
+        }
+        
+        // نمایش فرم افزودن نظر جدید
+        document.getElementById('addCommentBtn').addEventListener('click', function() {
+            document.getElementById('commentForm').classList.remove('hidden');
+        });
+        
+        // انصراف از ارسال نظر
+        document.getElementById('cancelCommentBtn').addEventListener('click', function() {
+            document.getElementById('commentForm').classList.add('hidden');
+            document.getElementById('newCommentText').value = '';
+        });
+        
+        // ارسال نظر جدید
+        document.getElementById('submitCommentBtn').addEventListener('click', function() {
+            const commentText = document.getElementById('newCommentText').value.trim();
+            if (commentText) {
+                const now = new Date();
+                const persianDate = '1404/01/24 ' + ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+                
+                const newComment = document.createElement('div');
+                newComment.className = 'comment-box';
+                newComment.innerHTML = `
+                    <div class="comment-header">
+                        <div class="flex items-center">
+                            <img src="https://via.placeholder.com/40" alt="تصویر کاربر" class="rounded-full w-10 h-10 ml-2">
+                            <div>
+                                <div class="font-bold">کاربر سامانه</div>
+                                <div class="text-sm text-gray-500">${persianDate}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>${commentText}</p>
+                    </div>
+                    <div class="comment-footer mt-4 flex">
+                        <button class="like-btn">
+                            <i class="far fa-thumbs-up ml-1"></i>
+                            <span>0</span>
+                        </button>
+                        <button class="dislike-btn">
+                            <i class="far fa-thumbs-down ml-1"></i>
+                            <span>0</span>
+                        </button>
+                        <button class="reply-btn">
+                            <i class="far fa-comment ml-1"></i>
+                            پاسخ به این نظر
+                        </button>
+                    </div>
+                `;
+                
+                document.getElementById('commentsContainer').prepend(newComment);
+                document.getElementById('commentForm').classList.add('hidden');
+                document.getElementById('newCommentText').value = '';
+                
+                // به‌روزرسانی تعداد نظرات
+                const commentsCount = document.querySelectorAll('.comment-box').length;
+                document.querySelector('.tab-btn:first-child span').textContent = commentsCount;
+            } else {
+                alert('لطفاً متن نظر خود را وارد کنید.');
+            }
+        });
+        
+        // اضافه کردن عملکرد به دکمه‌های لایک و دیسلایک
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.like-btn')) {
+                const likeBtn = e.target.closest('.like-btn');
+                const countSpan = likeBtn.querySelector('span');
+                let count = parseInt(countSpan.textContent);
+                countSpan.textContent = count + 1;
+            }
+            
+            if (e.target.closest('.dislike-btn')) {
+                const dislikeBtn = e.target.closest('.dislike-btn');
+                const countSpan = dislikeBtn.querySelector('span');
+                let count = parseInt(countSpan.textContent);
+                countSpan.textContent = count + 1;
+            }
+            
+            if (e.target.closest('.reply-btn')) {
+                alert('قابلیت پاسخ به نظر در نسخه بعدی اضافه خواهد شد.');
+            }
+        });
+    </script>
+</body>
+</html>
