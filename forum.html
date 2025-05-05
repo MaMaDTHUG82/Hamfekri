@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> انجمن همفکری</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Vazirmatn', tahoma, Arial, sans-serif;
+            background-color: #f0e7c8;
+        }
+        .topic-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .like-button.active {
+            color: #fa0e0e;
+        }
+        .hidden-section {
+            display: none;
+        }
+        .logo {
+            max-height: 60px;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .comment-box {
+            background-color: #f1f5f9;
+            border-right: 4px solid #0A2463;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-white custom-shadow py-3 px-4 mb-6">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="text-3xl font-bold text-indigo-700">همفکری</div>
+                </div>
+                <nav class="hidden md:flex space-x-1 space-x-reverse">
+                    <a href="index.html" class="px-3 py-2 text-gray-700 hover:text-indigo-600">صفحه اصلی</a>
+                    <a href="#" class="px-3 py-2 text-gray-700 hover:text-indigo-600">درباره ما</a>
+                    <a href="#" class="px-3 py-2 text-gray-700 hover:text-indigo-600">تماس با ما</a>
+                    <a href="#" class="px-3 py-2 text-gray-700 hover:text-indigo-600">سوالات متداول</a>
+                </nav>
+                <div class="flex items-center">
+                    <button id="login-button" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg">
+                        ورود / ثبت نام
+                    </button>
+                    <button class="md:hidden ml-2 text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-10">
+        <!-- Home Page Topics -->
+        <section id="topics-section" class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">موضوعات همفکری</h2>
+                <div class="text-sm text-gray-500">4 موضوع</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Topic 1 -->
+                <div class="topic-card bg-white rounded-lg overflow-hidden custom-shadow">
+                    <div class="h-40 bg-indigo-100 flex items-center justify-center">
+                        <i class="fas fa-book text-5xl text-indigo-500"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">توسعه فرهنگی</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            بررسی روش‌های بهبود و گسترش فرهنگ در جامعه و راهکارهای عملی
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <button class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="1">
+                                <i class="far fa-heart ml-1"></i>
+                                <span class="like-count">24</span>
+                            </button>
+                            <button class="view-topic-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-3 py-1 rounded-lg text-sm" data-topic="1">
+                                مشاهده
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 2 -->
+                <div class="topic-card bg-white rounded-lg overflow-hidden custom-shadow">
+                    <div class="h-40 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-users text-5xl text-blue-500"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">مشارکت اجتماعی</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            راهکارهای افزایش مشارکت مردم در امور اجتماعی و فعالیت‌های گروهی
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <button class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="2">
+                                <i class="far fa-heart ml-1"></i>
+                                <span class="like-count">37</span>
+                            </button>
+                            <button class="view-topic-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-3 py-1 rounded-lg text-sm" data-topic="2">
+                                مشاهده
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 3 -->
+                <div class="topic-card bg-white rounded-lg overflow-hidden custom-shadow">
+                    <div class="h-40 bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-seedling text-5xl text-green-500"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">محیط زیست</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            روش‌های محافظت از محیط زیست و توسعه فرهنگ حفظ منابع طبیعی
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <button class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="3">
+                                <i class="far fa-heart ml-1"></i>
+                                <span class="like-count">45</span>
+                            </button>
+                            <button class="view-topic-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-3 py-1 rounded-lg text-sm" data-topic="3">
+                                مشاهده
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 4 -->
+                <div class="topic-card bg-white rounded-lg overflow-hidden custom-shadow">
+                    <div class="h-40 bg-yellow-100 flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-5xl text-yellow-500"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">نوآوری و خلاقیت</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            چگونه می‌توان خلاقیت و نوآوری را در جامعه و نسل جوان تقویت کرد
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <button class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="4">
+                                <i class="far fa-heart ml-1"></i>
+                                <span class="like-count">31</span>
+                            </button>
+                            <button class="view-topic-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-3 py-1 rounded-lg text-sm" data-topic="4">
+                                مشاهده
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 1 Details -->
+        <section id="topic-1-details" class="hidden-section mb-10">
+            <div class="bg-white rounded-lg p-6 custom-shadow mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <button class="back-to-topics text-gray-500 hover:text-indigo-600 ml-3">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2 class="text-2xl font-bold text-gray-800">توسعه فرهنگی</h2>
+                    </div>
+                    <div class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="1">
+                        <i class="far fa-heart ml-1 text-xl"></i>
+                        <span class="like-count text-lg">24</span>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none">
+                    <p class="mb-4">
+                        توسعه فرهنگی یکی از مهم‌ترین عوامل رشد و شکوفایی جوامع است. فرهنگ به عنوان مجموعه‌ای از ارزش‌ها، باورها، آداب و رسوم، سنت‌ها و هنرها، تعیین‌کننده هویت و مسیر حرکت یک ملت است.
+                    </p>
+                    <p class="mb-4">
+                        در دنیای امروز، توسعه فرهنگی به معنای ایجاد فضایی برای شکوفایی خلاقیت‌ها، احترام به تنوع فرهنگی، حفظ میراث معنوی و مادی، و همچنین نوآوری در عرصه‌های مختلف فرهنگی و هنری است.
+                    </p>
+                    <h3 class="text-xl font-bold my-4">محورهای اصلی برای گفتگو:</h3>
+                    <ul class="list-disc mr-6 mb-4">
+                        <li>راهکارهای حفظ و تقویت هویت فرهنگی در عصر جهانی شدن</li>
+                        <li>نقش آموزش در توسعه فرهنگی و ارتقای سطح فرهنگ عمومی</li>
+                        <li>چالش‌های فرهنگی جامعه معاصر و راه‌های برون‌رفت از آن</li>
+                        <li>نقش رسانه‌ها و فضای مجازی در توسعه فرهنگی</li>
+                        <li>اقتصاد فرهنگ و راه‌های تقویت صنایع فرهنگی و خلاق</li>
+                    </ul>
+                    <p>
+                        نظرات و دیدگاه‌های خود را در این موضوع با ما به اشتراک بگذارید. تجربیات و پیشنهادهای شما می‌تواند به غنای این گفتگو بیفزاید.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="bg-white rounded-lg p-6 custom-shadow">
+                <h3 class="text-xl font-bold mb-6">نظرات کاربران</h3>
+
+                <!-- Comment Form -->
+                <div class="mb-8">
+                    <div class="flex mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center ml-3">
+                            <i class="fas fa-user text-indigo-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <textarea id="comment-text-1" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none" rows="3" placeholder="نظر خود را بنویسید..."></textarea>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <button id="submit-comment-1" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg">
+                            ارسال نظر
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comments List -->
+                <div id="comments-list-1">
+                    <!-- Comment 1 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-blue-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">محمد امینی</h4>
+                                    <span class="text-sm text-gray-500">3 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    به نظر من یکی از مهم‌ترین راهکارهای توسعه فرهنگی، آموزش از سنین پایین است. باید مهارت‌های فرهنگی مثل کتابخوانی، درک هنر و احترام به تنوع فرهنگی را از کودکی آموزش داد.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-green-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-green-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">سارا حسینی</h4>
+                                    <span class="text-sm text-gray-500">5 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    رسانه‌ها نقش بسیار مهمی در توسعه فرهنگی دارند. متأسفانه گاهی رسانه‌ها بیشتر به دنبال جذب مخاطب هستند تا ارتقای سطح فرهنگی. باید سیاست‌گذاری درستی در این زمینه انجام شود.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+
+                    <!-- Comment 3 with Replies -->
+                    <div class="mb-4 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-yellow-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-yellow-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">علی رضایی</h4>
+                                    <span class="text-sm text-gray-500">1 هفته پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    یکی از چالش‌های اصلی در توسعه فرهنگی، مقابله با تهاجم فرهنگی است. باید ضمن حفظ هویت فرهنگی خود، از جنبه‌های مثبت سایر فرهنگ‌ها نیز بهره ببریم.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+
+                        <!-- Reply 1 -->
+                        <div class="mr-10 mt-4 border-r-2 border-gray-300 pr-3">
+                            <div class="flex items-start mb-2">
+                                <div class="w-8 h-8 rounded-full bg-purple-200 flex items-center justify-center ml-3">
+                                    <i class="fas fa-user text-purple-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <h4 class="font-bold">مریم کریمی</h4>
+                                        <span class="text-sm text-gray-500">6 روز پیش</span>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        کاملاً موافقم. باید تعادل ایجاد کرد بین حفظ ارزش‌های فرهنگی خودمان و استفاده از نکات مثبت فرهنگ‌های دیگر.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 2 Details -->
+        <section id="topic-2-details" class="hidden-section mb-10">
+            <div class="bg-white rounded-lg p-6 custom-shadow mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <button class="back-to-topics text-gray-500 hover:text-indigo-600 ml-3">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2 class="text-2xl font-bold text-gray-800">مشارکت اجتماعی</h2>
+                    </div>
+                    <div class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="2">
+                        <i class="far fa-heart ml-1 text-xl"></i>
+                        <span class="like-count text-lg">37</span>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none">
+                    <p class="mb-4">
+                        مشارکت اجتماعی به معنای حضور فعال و مؤثر شهروندان در عرصه‌های مختلف اجتماعی، سیاسی، اقتصادی و فرهنگی است. این مشارکت می‌تواند در قالب فعالیت در سازمان‌های مردم‌نهاد، انجمن‌های محلی، همکاری با نهادهای عمومی و یا حتی مشارکت در تصمیم‌گیری‌های محلی باشد.
+                    </p>
+                    <p class="mb-4">
+                        تقویت مشارکت اجتماعی باعث افزایش سرمایه اجتماعی، تقویت همبستگی، کاهش آسیب‌های اجتماعی و در نهایت بهبود کیفیت زندگی شهروندان می‌شود.
+                    </p>
+                    <h3 class="text-xl font-bold my-4">محورهای اصلی برای گفتگو:</h3>
+                    <ul class="list-disc mr-6 mb-4">
+                        <li>موانع مشارکت اجتماعی و راهکارهای رفع آن‌ها</li>
+                        <li>نقش آموزش در تقویت روحیه مشارکت‌جویی</li>
+                        <li>سازمان‌های مردم‌نهاد و تأثیر آن‌ها بر توسعه اجتماعی</li>
+                        <li>راهکارهای جلب مشارکت اقشار مختلف جامعه</li>
+                        <li>تجربیات موفق مشارکت اجتماعی در ایران و جهان</li>
+                    </ul>
+                    <p>
+                        دیدگاه‌ها و تجربیات خود را در زمینه مشارکت اجتماعی با ما به اشتراک بگذارید.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="bg-white rounded-lg p-6 custom-shadow">
+                <h3 class="text-xl font-bold mb-6">نظرات کاربران</h3>
+
+                <!-- Comment Form -->
+                <div class="mb-8">
+                    <div class="flex mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center ml-3">
+                            <i class="fas fa-user text-indigo-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <textarea id="comment-text-2" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none" rows="3" placeholder="نظر خود را بنویسید..."></textarea>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <button id="submit-comment-2" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg">
+                            ارسال نظر
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comments List -->
+                <div id="comments-list-2">
+                    <!-- Comment 1 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-red-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-red-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">حسین محمدی</h4>
+                                    <span class="text-sm text-gray-500">2 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    یکی از مهم‌ترین موانع مشارکت اجتماعی، بی‌اعتمادی به نهادهای مسئول است. باید اعتماد مردم را با شفافیت و پاسخگویی جلب کرد.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-teal-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-teal-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">زهرا قاسمی</h4>
+                                    <span class="text-sm text-gray-500">4 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    من عضو یک NGO محیط زیستی هستم. تجربه من نشان می‌دهد که اگر مردم نتیجه مشارکت خود را به صورت ملموس ببینند، انگیزه بیشتری پیدا می‌کنند. باید موفقیت‌های کوچک را جشن گرفت.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 3 Details -->
+        <section id="topic-3-details" class="hidden-section mb-10">
+            <div class="bg-white rounded-lg p-6 custom-shadow mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <button class="back-to-topics text-gray-500 hover:text-indigo-600 ml-3">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2 class="text-2xl font-bold text-gray-800">محیط زیست</h2>
+                    </div>
+                    <div class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="3">
+                        <i class="far fa-heart ml-1 text-xl"></i>
+                        <span class="like-count text-lg">45</span>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none">
+                    <p class="mb-4">
+                        محیط زیست به عنوان بستر حیات همه موجودات زنده، امروزه با چالش‌های جدی مواجه است. تغییرات اقلیمی، آلودگی‌های مختلف، کاهش تنوع زیستی و فرسایش منابع طبیعی از جمله مهم‌ترین این چالش‌ها هستند.
+                    </p>
+                    <p class="mb-4">
+                        حفاظت از محیط زیست و توسعه پایدار نیازمند مشارکت همگانی و تغییر در سبک زندگی، الگوهای مصرف و سیاست‌گذاری‌های کلان است.
+                    </p>
+                    <h3 class="text-xl font-bold my-4">محورهای اصلی برای گفتگو:</h3>
+                    <ul class="list-disc mr-6 mb-4">
+                        <li>راهکارهای گسترش فرهنگ حفاظت از محیط زیست</li>
+                        <li>نقش مردم و سازمان‌های مردم‌نهاد در حفاظت از محیط زیست</li>
+                        <li>آموزش محیط زیست از کودکی تا بزرگسالی</li>
+                        <li>راهکارهای مقابله با آلودگی‌های زیست‌محیطی در شهرها</li>
+                        <li>اقتصاد سبز و فرصت‌های اشتغال در حوزه محیط زیست</li>
+                    </ul>
+                    <p>
+                        تجربیات و دیدگاه‌های خود را در زمینه محیط زیست با ما به اشتراک بگذارید.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="bg-white rounded-lg p-6 custom-shadow">
+                <h3 class="text-xl font-bold mb-6">نظرات کاربران</h3>
+
+                <!-- Comment Form -->
+                <div class="mb-8">
+                    <div class="flex mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center ml-3">
+                            <i class="fas fa-user text-indigo-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <textarea id="comment-text-3" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none" rows="3" placeholder="نظر خود را بنویسید..."></textarea>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <button id="submit-comment-3" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg">
+                            ارسال نظر
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comments List -->
+                <div id="comments-list-3">
+                    <!-- Comment 1 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-green-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-green-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">امیر نجفی</h4>
+                                    <span class="text-sm text-gray-500">1 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    به نظر من آموزش محیط زیست باید از مهدکودک‌ها شروع شود. کودکان به راحتی مفاهیم را می‌آموزند و می‌توانند به والدین خود نیز آموزش دهند.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-blue-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">نگار احمدی</h4>
+                                    <span class="text-sm text-gray-500">3 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    من در محله خودمان یک کمپین تفکیک زباله راه انداختیم. با وجود مشکلات زیاد، به تدریج مردم مشارکت کردند. مهم این است که از جایی شروع کنیم و قدم به قدم پیش برویم.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+
+                    <!-- Comment 3 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-purple-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-purple-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">رضا توکلی</h4>
+                                    <span class="text-sm text-gray-500">5 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    مهم‌ترین مسئله در حوزه محیط زیست، تغییر الگوی مصرف است. ما بیش از نیاز خود مصرف می‌کنیم و این فشار زیادی به منابع طبیعی وارد می‌کند.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic 4 Details -->
+        <section id="topic-4-details" class="hidden-section mb-10">
+            <div class="bg-white rounded-lg p-6 custom-shadow mb-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <button class="back-to-topics text-gray-500 hover:text-indigo-600 ml-3">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2 class="text-2xl font-bold text-gray-800">نوآوری و خلاقیت</h2>
+                    </div>
+                    <div class="like-button flex items-center text-gray-500 hover:text-red-500" data-topic="4">
+                        <i class="far fa-heart ml-1 text-xl"></i>
+                        <span class="like-count text-lg">31</span>
+                    </div>
+                </div>
+
+                <div class="prose max-w-none">
+                    <p class="mb-4">
+                        نوآوری و خلاقیت از مهم‌ترین مؤلفه‌های توسعه در دنیای امروز هستند. خلاقیت به معنای توانایی تولید ایده‌های نو و نوآوری به معنای تبدیل این ایده‌ها به محصولات، خدمات یا فرآیندهای جدید است.
+                    </p>
+                    <p class="mb-4">
+                        تقویت خلاقیت و نوآوری در جامعه، به ویژه در میان نسل جوان، می‌تواند زمینه‌ساز حل بسیاری از مشکلات اجتماعی، اقتصادی و فرهنگی باشد.
+                    </p>
+                    <h3 class="text-xl font-bold my-4">محورهای اصلی برای گفتگو:</h3>
+                    <ul class="list-disc mr-6 mb-4">
+                        <li>راهکارهای پرورش خلاقیت در کودکان و نوجوانان</li>
+                        <li>نقش نظام آموزشی در تقویت یا تضعیف خلاقیت</li>
+                        <li>موانع نوآوری در جامعه و راه‌های برطرف کردن آن‌ها</li>
+                        <li>زیرساخت‌های لازم برای رشد نوآوری و کارآفرینی</li>
+                        <li>تجربیات موفق نوآوری و خلاقیت در ایران و جهان</li>
+                    </ul>
+                    <p>
+                        دیدگاه‌ها و تجربیات خود را در زمینه نوآوری و خلاقیت با ما به اشتراک بگذارید.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="bg-white rounded-lg p-6 custom-shadow">
+                <h3 class="text-xl font-bold mb-6">نظرات کاربران</h3>
+
+                <!-- Comment Form -->
+                <div class="mb-8">
+                    <div class="flex mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center ml-3">
+                            <i class="fas fa-user text-indigo-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <textarea id="comment-text-4" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none" rows="3" placeholder="نظر خود را بنویسید..."></textarea>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <button id="submit-comment-4" class="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-6 rounded-lg">
+                            ارسال نظر
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comments List -->
+                <div id="comments-list-4">
+                    <!-- Comment 1 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-yellow-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-yellow-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">مهدی کاظمی</h4>
+                                    <span class="text-sm text-gray-500">2 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    متأسفانه نظام آموزشی ما بیشتر بر حفظیات تأکید دارد تا خلاقیت. باید رویکرد آموزشی را به سمت حل مسئله و تفکر انتقادی تغییر داد.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="mb-6 comment-box p-4 rounded-lg">
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-pink-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">الهه مرادی</h4>
+                                    <span class="text-sm text-gray-500">4 روز پیش</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    من به عنوان معلم، سعی می‌کنم با طراحی فعالیت‌های گروهی و پروژه‌محور، خلاقیت دانش‌آموزان را تقویت کنم. تأثیر این روش‌ها بسیار چشمگیر است.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4"> انجمن همفکری</h3>
+                    <p class="text-gray-400 mb-4">
+                        مکانی برای تبادل نظر و درباره موضوعات اجتماعی و فرهنگی
+                    </p>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <h4 class="text-lg font-semibold mb-4">دسترسی سریع</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">صفحه اصلی</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">درباره ما</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">تماس با ما</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">سوالات متداول</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">تماس با ما</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt ml-2 text-indigo-400"></i>
+                            <span class="text-gray-400">  تهران، بزرگراه شهید زین الدین، بابائیان، 15 متری شیرازی، پلاک 5، دانشکده هنر و معماری (محله‌ی حکیمیه) </span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone ml-2 text-indigo-400"></i>
+                            <span class="text-gray-400">021-00000000</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope ml-2 text-indigo-400"></i>
+                            <span class="text-gray-400">info@hamfekri.ir</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>تمامی حقوق این سایت محفوظ است &copy; 1404</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Like functionality
+            const likeButtons = document.querySelectorAll('.like-button');
+            likeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const topicId = this.getAttribute('data-topic');
+                    const likeCountEls = document.querySelectorAll(`.like-button[data-topic="${topicId}"] .like-count`);
+                    const likeIconEls = document.querySelectorAll(`.like-button[data-topic="${topicId}"] i`);
+                    
+                    // Check if already liked
+                    const isLiked = this.classList.contains('active');
+                    
+                    // Toggle like
+                    if (isLiked) {
+                        likeButtons.forEach(btn => {
+                            if (btn.getAttribute('data-topic') === topicId) {
+                                btn.classList.remove('active');
+                            }
+                        });
+                        likeIconEls.forEach(icon => {
+                            icon.classList.remove('fas');
+                            icon.classList.add('far');
+                        });
+                        likeCountEls.forEach(count => {
+                            count.textContent = parseInt(count.textContent) - 1;
+                        });
+                    } else {
+                        likeButtons.forEach(btn => {
+                            if (btn.getAttribute('data-topic') === topicId) {
+                                btn.classList.add('active');
+                            }
+                        });
+                        likeIconEls.forEach(icon => {
+                            icon.classList.remove('far');
+                            icon.classList.add('fas');
+                        });
+                        likeCountEls.forEach(count => {
+                            count.textContent = parseInt(count.textContent) + 1;
+                        });
+                    }
+                });
+            });
+
+            // View Topic functionality
+            const viewTopicBtns = document.querySelectorAll('.view-topic-btn');
+            const topicsSection = document.getElementById('topics-section');
+            const backToTopicsBtns = document.querySelectorAll('.back-to-topics');
+            
+            viewTopicBtns.forEach(button => {
+                button.addEventListener('click', function() {
+                    const topicId = this.getAttribute('data-topic');
+                    topicsSection.classList.add('hidden-section');
+                    document.getElementById(`topic-${topicId}-details`).classList.remove('hidden-section');
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            backToTopicsBtns.forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('section[id$="-details"]').forEach(section => {
+                        section.classList.add('hidden-section');
+                    });
+                    topicsSection.classList.remove('hidden-section');
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            // Comment submission
+            for (let i = 1; i <= 4; i++) {
+                const submitBtn = document.getElementById(`submit-comment-${i}`);
+                const commentText = document.getElementById(`comment-text-${i}`);
+                const commentsList = document.getElementById(`comments-list-${i}`);
+                
+                submitBtn.addEventListener('click', function() {
+                    if (commentText.value.trim() === '') return;
+                    
+                    // Create new comment
+                    const newComment = document.createElement('div');
+                    newComment.className = 'mb-6 comment-box p-4 rounded-lg';
+                    newComment.innerHTML = `
+                        <div class="flex items-start mb-2">
+                            <div class="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center ml-3">
+                                <i class="fas fa-user text-indigo-500"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h4 class="font-bold">کاربر</h4>
+                                    <span class="text-sm text-gray-500">همین الان</span>
+                                </div>
+                                <p class="text-gray-700">
+                                    ${commentText.value}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mr-13">
+                            <button class="text-gray-500 hover:text-indigo-600 text-sm">پاسخ</button>
+                        </div>
+                    `;
+                    
+                    // Add to beginning of comments list
+                    commentsList.insertBefore(newComment, commentsList.firstChild);
+                    
+                    // Clear comment text
+                    commentText.value = '';
+                });
+            }
+
+            // Login button
+            const loginButton = document.getElementById('login-button');
+            loginButton.addEventListener('click', function() {
+                alert('این قابلیت در نسخه نمایشی فعال نیست.');
+            });
+        });
+    </script>
+</body>
+</html>
